@@ -1,0 +1,18 @@
+Nand
+--- 01
+Not
+Not16
+And
+And16
+Or
+Or16
+Xor
+DMux
+Mux
+Mux16
+Mux4Way16
+--- 02
+HalfAdder
+FullAdder
+Add16
+Inc16
