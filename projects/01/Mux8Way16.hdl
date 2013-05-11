@@ -20,4 +20,31 @@ CHIP Mux8Way16 {
 
     PARTS:
     // Put your code here.
+
+    Mux4Way16(
+    	a=a,
+    	b=b,
+    	c=c,
+    	d=d,
+    	sel[0]=sel[0],
+    	sel[1]=sel[1],
+    	out=oa
+
+    );
+    Mux4Way16(
+    	a=e,
+    	b=f,
+    	c=g,
+    	d=h,
+    	sel[0]=sel[0],
+    	sel[1]=sel[1],
+    	out=ob
+    );
+    Mux16(
+    	a=oa,
+    	b=ob,
+    	sel=sel[2],
+    	out=out
+    );
+
 }
