@@ -49,12 +49,103 @@ CHIP ALU {
 
     PARTS:
     // Put your code here.
+    
+    // if (zx  == 1) sets x = 0        // 16-bit constant 
+    Not16 (
+        in=true,
+        out=xzero
+    );
+    Mux16(
+        a=x,
+        b=xzero,
+        sel=zx,
+        out=x1
+    );
 
 
+    //if (nx  == 1) sets x = ~x       // bitwise "not"
+    Not16(
+        in=x,
+        out=notx
+    );
+    Mux16(
+        a=x,
+        b=notx,
+        sel=nx,
+        out=x2
+    );
     
 
+    // if (zy  == 1) sets y = 0        // 16-bit constant
+    Not16 (
+        in=true,
+        out=yzero
+    );
+    Mux16(
+        a=y,
+        b=yzero,
+        sel=zy,
+        out=y1
+    );
 
 
+    // if (ny  == 1) sets y = ~y       // bitwise "not"
+    Not16(
+        in=y,
+        out=noty
+    );
+    Mux16(
+        a=y,
+        b=noty,
+        sel=zy,
+        out=y2
+    );
 
+    // if (f   == 1) sets out = x + y  // integer 2's-complement addition
+    // if (f   == 0) sets out = x & y  // bitwise And
+    Add16(
+        a=x,
+        b=y,
+        out=addxy
+    );
+    And16(
+        a=x,
+        b=y,
+        out=andxy
+    );
+    Mux16(
+        a=andxy,
+        b=addxy,
+        sel=f,
+        out=o
+    );
+
+   // if (no  == 1) sets out = ~out   // bitwise Not
+    Not16(
+        in=o,
+        out=oo
+    );
+    Mux16(
+        a=oo,
+        b=o,
+        sel=no,
+        out=ooo
+    );
+
+    And16(
+        a=ooo,
+        b=true,
+        out=out
+        );
+    // if (out == 0) sets zr = 1
+    And161(
+        a=ooo,
+        out=zr
+        );
+  
+    
+
+    // if (out < 0)  sets ng = 1
+    
 
 }

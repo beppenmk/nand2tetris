@@ -1,0 +1,93 @@
+// This file is part of www.nand2tetris.org
+// and the book "The Elements of Computing Systems"
+// by Nisan and Schocken, MIT Press.
+// File name: projects/01/And16.hdl
+
+/**
+ * 16-bit-wise And gate: for i = 0..15: out[i] = a[i] And b[i]
+ */
+
+CHIP And16 {
+    IN a[16];
+    OUT out;
+
+    PARTS:
+    // Put your code here.
+    And (
+    	a = a[1],
+    	b = a[2],
+    	out = out1
+    );
+    And (
+    	a = a[3],
+    	b = a[4],
+    	out = out2
+    );
+    And (
+        a = a[5],
+        b = a[6],
+        out = out3
+    );
+    And (
+        a = a[7],
+        b = a[8],
+        out = out4
+    );
+    And (
+        a = a[9],
+        b = a[10],
+        out = out5
+    );
+    And (
+        a = a[11],
+        b = a[12],
+        out = out6
+    );
+    And (
+        a = a[13],
+        b = a[14],
+        out = out7
+    );
+    And (
+        a = a[15],
+        b = a[16],
+        out = out8
+    );
+    And (
+        a = out1,
+        b = out2,
+        out = o1
+    );
+
+    And (
+        a = out3,
+        b = out4,
+        out = o2
+    );
+    And (
+        a = out5,
+        b = out6,
+        out = o3
+    );
+    And (
+        a = out7,
+        b = out8,
+        out = o4
+    );
+    And (
+        a = o1,
+        b = o2,
+        out = oo1
+    );
+
+    And (
+        a = o3,
+        b = o4,
+        out = oo2
+    );
+    And (
+        a = oo1,
+        b = oo2,
+        out = out
+    );
+}
